@@ -1,0 +1,123 @@
+
+<html>
+
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var arr=[];
+            var value1=["Sam","sam@gmail.com","9876543210"];
+            var value2=["Nihi","nihi@yahoo.com","9876543210"];
+            var value3=["Sai","sai@gmail.com","6605285801"];
+            arr=[value1,value2,value3];
+            var i=1;
+            var table=document.getElementById("tbl");
+            for(j in arr){
+                var row=table.insertRow(i);
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = arr[j][0];
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = arr[j][1];
+                var cell3 = row.insertCell(2);
+                cell3.innerHTML = arr[j][2];
+                var cell4 = row.insertCell(3);
+                cell4.innerHTML =  " <button name='edit' onclick = 'edit("+i+")'> Edit</button> |<button name='delete' onclick='ddelete("+i+")' >Delete</button>";
+                i=i + 1;
+
+            }
+        }
+                );
+
+                function edit(id){
+                    var table= document.getElementById("tbl");
+                    console.log(table.rows[id]);
+                    var name=document.getElementById("name");
+                    var email=document.getElementById("email");
+                    var Phno=document.getElementById("no");
+                    var idfrm=document.getElementById('id');
+                    name.value=table.rows[id].getElementsByTagName("td")[0].innerHTML.toString();
+                    email.value=table.rows[id].getElementsByTagName("td")[1].innerHTML.toString();
+                    no.value=table.rows[id].getElementsByTagName("td")[2].innerHTML.toString();
+                    idfrm.value=id;
+                }
+                function update() {
+                  var table=document.getElementById("tbl");
+                  console.log(table.rows[id]);
+                  var name=document.getElementById('name');
+                  var email=document.getElementById('email');
+                  var Phno=document.getElementById('no');
+                  var table=document.getElementById('tbl');
+
+                  table.rows[id.value].getElementsByTagName('td')[0].innerHTML=name.value;
+                  table.rows[id.value].getElementsByTagName('td')[1].innerHTML=email.value;
+                  table.rows[id.value].getElementsByTagName('td')[2].innerHTML=no.value;
+
+                }
+                function ddelete(id){
+                    var table= document.getElementById("tbl");
+                    console.log(table.rows.length);
+                    table.deleteRow(id);
+                }
+                function save(){
+              var name=document.getElementById("name").value;
+              var email=document.getElementById("email").value;
+              var Phno=document.getElementById("no").value;
+              var table=document.getElementById("tbl");
+              var i=table.rows.length;
+              var row=table.insertRow(i);
+              var cell0=row.insertCell(0);
+              cell0.innerHTML=name;
+              var cell1=row.insertCell(1);
+              cell1.innerHTML=email;
+              var cell2=row.insertCell(2);
+              cell2.innerHTML=Phno;
+              var cell3=row.insertCell(3);
+              cell3.innerHTML="<button name='edit' onclick='edit("+i+")'>Edit</button> |<button name='delete' onclick='ddelete("+i+")'>Delete</button>";
+          document.getElementById("name").value="";
+          document.getElementById("email").value="";
+          document.getElementById("no").value="";
+            }
+    </script>
+
+</head>
+    <body>
+
+         <div class="col-md-4">
+
+                          <input type="hidden"  class="form-control" name="id" id="id">
+                          <input type="text" class="form-control" placeholder="Enter Name"id="name"value="">
+
+        <input type="text" class="form-control" placeholder="Enter Email"id="email">
+           <input type="text" class="form-control" placeholder="Enter Mobile"id="no">
+           <button type="button" class="btn btn-primary btn-lg" style="align-items: center"onclick="save()">Save</button>
+        <button type="button" class="btn btn-primary btn-lg" style="align-items: center"onclick="update()">update</button>
+
+           </div>
+        <div>
+        <table class="table table-bordered" id="tbl" class="col-md-6">
+            <thead>
+
+                <td>Name</td>
+
+                <td>Email</td>
+                <td>Mobile</td>
+                <td>Action</td>
+
+            </thead>
+        </table>
+
+        </div>
+    </body>
+</html>
